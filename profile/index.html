@@ -17,13 +17,31 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <title>My portofolio</title>
+    <title>Portofolio</title>
   </head>
   <body>
     <style>
       .navbar-brand .card-img-top{
         border-radius: 30px;
       }
+      .photo {
+    width: 200px;
+    max-width: 300px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    justify-self: center;
+    
+}
+
+@media (min-width: 768px) {
+    .photo {
+        width: 500px;   
+    }
+}
+
+
+    
     </style>
     <header>
       <div class="container">
@@ -107,8 +125,10 @@
                     li{
                         list-style: none;
                     }
+                   
+
                   </style>
-                  <img class="card-img-top" src="photojv.jpeg" alt="image"  height="450"></a>
+                  <img class="photo card-img-top" src="photojv.jpeg" alt="image">
                 </div>
 
                 </div>
@@ -144,9 +164,6 @@
                             <li class="text-center"><h5 class="text-primary">technology stack</h5></li>
                             <li class="text-center">HTML, CSS, JavaScript</li>
                             <br>
-                            <li class="text-center"><h5 class="text-primary">Tools</h5></li>
-                            <li class="text-center">Bootstrap, github</li>
-                            <br>
                             <li class="text-center"><h5 class="text-primary">back end developer</h5></li>
                             <li class="text-center">Back end developer adalah seorang developer yang mengembangkan website atau aplikasi dari sisi server atau server-side. </li>
                               <br>
@@ -155,6 +172,9 @@
                             <br>
                             <li class="text-center"><h5 class="text-primary">Tools</h5></li>
                             <li class="text-center">mysql</li>
+                                <br>
+                            <li class="text-center"><h5 class="text-primary">Framework</h5></li>
+                            <li class="text-center">Laravel dan React.js</li>
                             
                            
                          
@@ -179,10 +199,12 @@
                                   <li class="text-center">Back end developer adalah seorang developer yang mengembangkan website atau aplikasi dari sisi server atau server-side. </li>
                                     <br>
                                   <li class="text-center"><h5 class="text-primary">Language</h5></li>
-                                  <li class="text-center">java</li>
+                                  <li class="text-center">java dan JSX</li>
                                   <br>
                                   <li class="text-center"><h5 class="text-primary">Tools</h5></li>
                                   <li class="text-center">firebase</li>
+                                  <li class="text-center"><h5 class="text-primary">Framework/library</h5></li>
+                                <li class="text-center"> React native</li>
                                   <br><br><br>
                                   
                                   
@@ -215,6 +237,8 @@
                       </div>
       
         <div class="jumbotron bg-transparent" id="project">
+      
+
             <h1 class="display-4 text-center">Project</h1>
             <p class="display-6 text-center">projek yang kami buat:</p>
 
@@ -303,6 +327,42 @@
                       </div>
                     </div>
                 </div>
+
+                 <div class="row">
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body bg-warning">
+                        <center>
+                      <img src="traking.png" alt="img" height="260">
+                      </center>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <div class="card-body text-center">
+                        <br>
+                        <br>
+                      <h5 class="card-title text-warning">Web Tracking Barang</h5>
+                      <br>
+                      <p class="card-text">aplikasi mari bertujuan untuk mempermudah dalam monitoring pengiriman barang</p>
+                      <br>
+                      <h5>Tools :</h5><p>Framework laravel</p>
+                      <h5>language :</h5><p>PHP dan MySQL(Database)</p>
+
+                      <br>
+                     
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <br>
+
+                      <div id="pagination-controls" style="text-align:center; margin-top: 20px;">
+  <button class="btn btn-primary" id="prevPage">Prev</button>
+  <span id="pageInfo"></span>
+  <button class="btn btn-primary" id="nextPage">Next</button>
+</div>
             
           </div>
           
@@ -343,12 +403,64 @@
                   <footer class="blockquote-footer">Created by <cite title="Source Title">Muhammad juve</cite></footer>
                 </blockquote>
                 <br>
+
                 <br>
                 <br>
               </div>
         </div>
         </center>
       </footer>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+  const projectContainer = document.getElementById("project");
+  const rows = projectContainer.querySelectorAll(".row");
+  const prevBtn = document.getElementById("prevPage");
+  const nextBtn = document.getElementById("nextPage");
+  const pageInfo = document.getElementById("pageInfo");
+
+  const rowsPerPage = 2;
+  const totalPages = Math.ceil(rows.length / rowsPerPage);
+  let currentPage = 1;
+
+  function showPage(page) {
+    rows.forEach(row => (row.style.display = "none"));
+
+    
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    for (let i = start; i < end && i < rows.length; i++) {
+      rows[i].style.display = "flex"; 
+    }
+
+
+    pageInfo.textContent = `halaman ${page} dari ${totalPages}`;
+
+   
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+  }
+
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+
+  showPage(currentPage);
+});
+
+      </script>
       <script>
         document.getElementById("email").addEventListener('click', function(){
             const alamat = `juvealaziz@gmail.com`;
@@ -401,7 +513,3 @@
     ></script>
   </body>
 </html>
-
-
-
-
